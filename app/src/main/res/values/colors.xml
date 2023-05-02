@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="primaryBlue">#21899C</color>
+    <color name="primaryOrange">#FE9879</color>
+    <color name="hyperlink">#FF7248</color>
+    <color name="placeHolder">#969AA8</color>
+    <color name="green">#29A007</color>
+    <color name="text">#2B2727</color>
+    <color name="text2">#302D2C</color>
+    <color name="background">#fdfdfd</color>
+    <color name="backgroundUnselectedCategory">#F2F2F2</color>
+    <color name="border">#EAEBEC</color>
+    <color name="disable">#808080</color>
+    <color name="unselectedNavigation">#E7DFDC</color>
+</resources>
