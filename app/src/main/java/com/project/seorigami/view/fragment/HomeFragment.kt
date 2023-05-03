@@ -19,6 +19,7 @@ import com.project.seorigami.databinding.FragmentHomeBinding
 import com.project.seorigami.model.response.MitraDataModel
 import com.project.seorigami.util.GridItemDecoration
 import com.project.seorigami.util.ItemClickListener
+import com.project.seorigami.util.KeyIntent
 import com.project.seorigami.util.PixelHelper
 import com.project.seorigami.view.activity.DetailLayananActivity
 import com.project.seorigami.viewmodel.HomeViewModel
@@ -27,7 +28,7 @@ class HomeFragment : Fragment() {
     private val listenerMitra = object : ItemClickListener<MitraDataModel> {
         override fun onClickItem(item: MitraDataModel) {
             val intent = Intent(requireContext(), DetailLayananActivity::class.java)
-//            intent.putExtra(KeyIntent.KEY_ID_LAND, item.idLand.toString())
+            intent.putExtra(KeyIntent.MITRA_ID.name, item.id)
             startActivity(intent)
         }
     }

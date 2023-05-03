@@ -9,6 +9,7 @@
     android:orientation="horizontal">
     
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImage"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginRight="12dp"
@@ -23,6 +24,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textViewKeterangan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
@@ -34,6 +36,7 @@
             android:ellipsize="end"/>
 
         <TextView
+            android:id="@+id/textViewHarga"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -54,6 +57,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textViewSubtotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
@@ -71,12 +75,14 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/imageViewMinus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/ic_round_remove_circle_outline"/>
 
             <TextView
+                android:id="@+id/textViewQty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
@@ -89,6 +95,7 @@
                 android:ellipsize="end"/>
 
             <ImageView
+                android:id="@+id/imageViewPlus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
