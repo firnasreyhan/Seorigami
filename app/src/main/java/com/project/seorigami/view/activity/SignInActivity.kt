@@ -4,15 +4,24 @@ import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.project.seorigami.databinding.ActivitySignInBinding
+import com.project.seorigami.util.ApiResponse
 import com.project.seorigami.util.State
 import com.project.seorigami.viewmodel.SignInViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
-    private lateinit var viewModel: SignInViewModel
+    private val viewModel: SignInViewModel by viewModels()
     private lateinit var dialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +30,24 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         dialog = ProgressDialog(this)
-        viewModel = ViewModelProvider(this)[SignInViewModel::class.java]
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.signInFlow.collect {
+                    when(it) {
+                        is ApiResponse.Loading -> {
+
+                        }
+                        is ApiResponse.Error -> {
+
+                        }
+                        is ApiResponse.Success -> {
+
+                        }
+                    }
+                }
+            }
+        }
 
         binding.button.setOnClickListener {
             if (validate()) {
