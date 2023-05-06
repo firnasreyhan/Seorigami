@@ -7,7 +7,7 @@
     android:padding="13dp"
     android:orientation="vertical"
     android:background="@color/background"
-    tools:context=".view.fragment.HomeTailorFragment">
+    tools:context=".view.fragment.HomeMitraFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,6 +26,7 @@
             android:textSize="20sp" />
 
         <ImageView
+            android:id="@+id/imageViewTambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -48,9 +49,12 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewJasa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
                 app:cardElevation="0dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="6dp">
@@ -74,9 +78,12 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewBahan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
                 app:cardElevation="0dp"
                 app:cardBackgroundColor="@color/backgroundUnselectedCategory"
                 app:cardCornerRadius="6dp">
@@ -104,13 +111,26 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewJasa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
-        tools:listitem="@layout/item_bahan_jasa_tailor"
+        tools:listitem="@layout/item_bahan_jasa_mitra"
         tools:itemCount="10"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewBahan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:listitem="@layout/item_bahan_jasa_mitra"
+        tools:itemCount="10"
+        android:visibility="gone"/>
 
 </LinearLayout>

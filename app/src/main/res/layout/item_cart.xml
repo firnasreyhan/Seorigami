@@ -13,8 +13,6 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginRight="12dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
         android:src="@color/placeHolder"/>
 
     <LinearLayout
@@ -83,11 +81,11 @@
 
             <TextView
                 android:id="@+id/textViewQty"
-                android:layout_width="match_parent"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 tools:text="1"
-                android:paddingHorizontal="16dp"
+                android:gravity="center"
                 android:textColor="@color/primaryBlue"
                 android:textSize="14sp"
                 android:maxLines="1"

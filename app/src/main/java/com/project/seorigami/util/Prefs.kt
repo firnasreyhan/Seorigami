@@ -2,7 +2,7 @@ package com.project.seorigami.util
 
 import android.content.Context
 import com.google.gson.Gson
-import com.project.seorigami.model.response.UserResponseModel
+import com.project.seorigami.model.response.UserDataModel
 
 class Prefs(context: Context) {
     private val KEY_JWT = "KEY_JWT"
@@ -15,7 +15,7 @@ class Prefs(context: Context) {
         get() = preferencesJWT.getString(KEY_JWT, null)
         set(value) = preferencesJWT.edit().putString(KEY_JWT, value).apply()
 
-    var user: UserResponseModel?
-        get() = Gson().fromJson(preferencesUser.getString(KEY_USER, null), UserResponseModel::class.java)
+    var user: UserDataModel?
+        get() = Gson().fromJson(preferencesUser.getString(KEY_USER, null), UserDataModel::class.java)
         set(value) = preferencesUser.edit().putString(KEY_USER, Gson().toJson(value)).apply()
 }

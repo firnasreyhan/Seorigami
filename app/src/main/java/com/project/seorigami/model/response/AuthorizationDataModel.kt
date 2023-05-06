@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class AuthorizationResponseModel(
+data class AuthorizationDataModel(
     val token: String,
     val type: String
 ) : Parcelable

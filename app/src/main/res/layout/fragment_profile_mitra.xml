@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/background"
-    tools:context=".view.fragment.ProfileTailorFragment">
+    tools:context=".view.fragment.ProfileMitraFragment">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -46,6 +46,7 @@
                 android:orientation="vertical">
                 
                 <ImageView
+                    android:id="@+id/imageViewFoto"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:adjustViewBounds="true"
@@ -53,13 +54,14 @@
                     android:src="@color/placeHolder"/>
 
                 <Button
+                    android:id="@+id/buttonGantiFoto"
                     android:layout_width="185dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:backgroundTint="@color/text2"
                     android:fontFamily="@font/poppins_bold"
                     android:padding="15dp"
-                    android:text="simpan"
+                    android:text="ganti foto"
                     android:textAllCaps="true"
                     android:textSize="12sp"/>
                 
@@ -83,9 +85,11 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     app:boxBackgroundColor="@color/placeHolder"
                     app:boxStrokeWidth="0dp"
-                    app:hintAnimationEnabled="false">
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -96,7 +100,7 @@
                         android:maxLines="1"
                         android:textColor="@color/text"
                         android:textSize="14sp"
-                        tools:text="Pelanggan"
+                        android:text="Penjahit"
                         android:enabled="false"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -121,18 +125,61 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Andi"
+                    android:layout_marginTop="4dp"
                     app:boxBackgroundColor="@color/white"
                     app:boxStrokeWidth="0dp"
-                    app:hintAnimationEnabled="false">
+                    app:hintEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextNama"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:inputType="textPersonName"
+                        android:hint="Andi"
                         android:lines="1"
                         android:maxLines="1"
+                        android:textColor="@color/text"
+                        android:textSize="14sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Deskripsi"
+                    android:textColor="@color/placeHolder"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxStrokeWidth="0dp"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextDeskripsi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lines="8"
+                        android:minLines="6"
+                        android:maxLines="10"
+                        android:scrollbars="vertical"
+                        android:gravity="start"
+                        android:fontFamily="@font/poppins_medium"
+                        android:inputType="textMultiLine"
+                        android:hint="Deskripsi"
                         android:textColor="@color/text"
                         android:textSize="14sp" />
 
@@ -158,16 +205,19 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="user@email.com"
+                    android:layout_marginTop="4dp"
                     app:boxBackgroundColor="@color/placeHolder"
                     app:boxStrokeWidth="0dp"
-                    app:hintAnimationEnabled="false">
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:inputType="textEmailAddress"
+                        android:hint="user@email.com"
                         android:lines="1"
                         android:maxLines="1"
                         android:textColor="@color/text"
@@ -196,17 +246,21 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="******"
+                    android:layout_marginTop="4dp"
                     app:boxStrokeWidth="0dp"
-                    app:hintAnimationEnabled="false"
+                    app:endIconDrawable="@drawable/selector_toogle_password"
                     app:passwordToggleEnabled="true"
-                    app:boxBackgroundColor="@color/white">
+                    app:boxBackgroundColor="@color/white"
+                    app:hintEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:inputType="textPassword"
+                        android:hint="******"
+                        android:textColorHint="@color/placeHolder"
                         android:lines="1"
                         android:maxLines="1"
                         android:textColor="@color/text"
@@ -216,7 +270,88 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Pin Point"
+                    android:textColor="@color/placeHolder"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxStrokeWidth="0dp"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextPinPoint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:inputType="text"
+                        android:hint="-7.911738, 112.639294"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:textColor="@color/text"
+                        android:textSize="14sp"
+                        android:drawableEnd="@drawable/ic_round_map"
+                        android:clickable="true"
+                        android:focusable="false"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Kota"
+                    android:textColor="@color/placeHolder"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:boxBackgroundColor="@color/placeHolder"
+                    app:boxStrokeWidth="0dp"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextKabKota"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:inputType="textPostalAddress"
+                        android:hint="Malang"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:textColor="@color/text"
+                        android:textSize="14sp"
+                        android:enabled="false"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
             <Button
+                android:id="@+id/buttonSimpan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"

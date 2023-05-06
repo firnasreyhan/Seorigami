@@ -21,6 +21,7 @@
             app:cardCornerRadius="10dp">
             
             <ImageView
+                android:id="@+id/imageViewBahanJasa"
                 android:layout_width="match_parent"
                 android:layout_height="95dp"
                 android:adjustViewBounds="true"
@@ -36,6 +37,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textViewKeterangan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
@@ -53,6 +55,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/textViewHarga"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
@@ -66,6 +69,7 @@
                     android:ellipsize="end"/>
 
                 <ImageView
+                    android:id="@+id/imageViewHapus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"

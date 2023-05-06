@@ -51,21 +51,22 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 app:boxBackgroundColor="@color/placeHolder"
                 app:boxStrokeWidth="0dp"
-                app:hintAnimationEnabled="false">
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditDaftarSebagai"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:inputType="textPersonName"
+                    android:text="Pelanggan"
                     android:lines="1"
                     android:maxLines="1"
                     android:textColor="@color/text"
-                    android:textSize="14sp"
-                    tools:text="Pelanggan"
-                    android:enabled="false"/>
+                    android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,16 +90,18 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Andi"
+                android:layout_marginTop="4dp"
                 app:boxBackgroundColor="@color/white"
                 app:boxStrokeWidth="0dp"
-                app:hintAnimationEnabled="false">
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTextNama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:inputType="textPersonName"
+                    android:hint="Andi"
                     android:lines="1"
                     android:maxLines="1"
                     android:textColor="@color/text"
@@ -126,16 +129,18 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="user@email.com"
+                android:layout_marginTop="4dp"
                 app:boxBackgroundColor="@color/placeHolder"
                 app:boxStrokeWidth="0dp"
-                app:hintAnimationEnabled="false">
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTextEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:inputType="textEmailAddress"
+                    android:hint="user@email.com"
                     android:lines="1"
                     android:maxLines="1"
                     android:textColor="@color/text"
@@ -164,17 +169,20 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="******"
+                android:layout_marginTop="4dp"
                 app:boxStrokeWidth="0dp"
                 app:hintAnimationEnabled="false"
                 app:passwordToggleEnabled="true"
-                app:boxBackgroundColor="@color/white">
+                app:endIconDrawable="@drawable/selector_toogle_password"
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTextPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:inputType="textPassword"
+                    android:hint="******"
                     android:lines="1"
                     android:maxLines="1"
                     android:textColor="@color/text"
@@ -185,6 +193,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/buttonSimpan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"

@@ -7,9 +7,12 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.project.seorigami.R
 import com.project.seorigami.databinding.ActivityMainBinding
+import com.project.seorigami.util.Prefs
 import com.project.seorigami.view.fragment.HomeFragment
+import com.project.seorigami.view.fragment.HomeMitraFragment
 import com.project.seorigami.view.fragment.OrderFragment
 import com.project.seorigami.view.fragment.ProfileFragment
+import com.project.seorigami.view.fragment.ProfileMitraFragment
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
@@ -20,14 +23,22 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        loadFragment(HomeFragment())
+        if (Prefs(this).user?.`as`.equals("penjahit")) {
+            loadFragment(HomeMitraFragment())
+        } else {
+            loadFragment(HomeFragment())
+        }
         binding.bottomNavigation.setOnNavigationItemSelectedListener(this)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.page_home -> {
-                loadFragment(HomeFragment())
+                if (Prefs(this).user?.`as`.equals("penjahit")) {
+                    loadFragment(HomeMitraFragment())
+                } else {
+                    loadFragment(HomeFragment())
+                }
                 return true
             }
             R.id.page_order -> {
@@ -35,7 +46,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 return true
             }
             R.id.page_profile -> {
-                loadFragment(ProfileFragment())
+                if (Prefs(this).user?.`as`.equals("penjahit")) {
+                    loadFragment(ProfileMitraFragment())
+                } else {
+                    loadFragment(ProfileFragment())
+                }
                 return true
             }
         }

@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SignInResponseModel(
-    val authorization: AuthorizationResponseModel,
-    val user: UserResponseModel
+    val authorization: AuthorizationDataModel,
+    val user: UserDataModel
 ) : Parcelable, BaseResponseModel()

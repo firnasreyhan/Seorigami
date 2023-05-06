@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -45,6 +46,7 @@ class DetailLayananActivity : AppCompatActivity() {
 
         viewModel.layanan(this, mitraId)
         viewModel.dataLayanan.observe(this) {
+            binding.textViewTitle.text = it.nama
             binding.textViewNama.text = it.nama
             binding.textViewKota.text = it.kota
             binding.textViewDeskripsi.text = it.deskripsi
@@ -83,6 +85,7 @@ class DetailLayananActivity : AppCompatActivity() {
 
             val intent = Intent(this, CartActivity::class.java)
             intent.putExtra(KeyIntent.CART_DATA.name, cartData)
+            intent.putExtra(KeyIntent.MITRA_ID.name, mitraId)
             startActivity(intent)
         }
     }

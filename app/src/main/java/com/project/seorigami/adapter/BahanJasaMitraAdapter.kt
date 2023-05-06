@@ -17,13 +17,12 @@ import com.project.seorigami.util.ItemClickListener
 import com.project.seorigami.util.PixelHelper
 import com.project.seorigami.util.Utils
 
-class BahanJasaAdapter() : RecyclerView.Adapter<BahanJasaAdapter.ViewHolder>() {
+class BahanJasaMitraAdapter(private var listenerHapus: ItemClickListener<Int>) : RecyclerView.Adapter<BahanJasaMitraAdapter.ViewHolder>() {
     var data = mutableListOf<BahanJasaDataModel>()
-    var selectedData = mutableListOf<BahanJasaDataModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_bahan_jasa, parent, false)
+            .inflate(R.layout.item_bahan_jasa_mitra, parent, false)
         return ViewHolder(view)
     }
 
@@ -40,24 +39,10 @@ class BahanJasaAdapter() : RecyclerView.Adapter<BahanJasaAdapter.ViewHolder>() {
             .load(currentData.foto)
             .into(holder.imageViewBahanJasa)
 
-        (holder.itemView.layoutParams as ViewGroup.MarginLayoutParams).apply {
-            if (position != data.lastIndex) {
-                rightMargin = PixelHelper.convertDpToPx(14, holder.itemView.context.resources)
-            }
-        }
+        holder.imageViewHapus.setOnClickListener {
+            listenerHapus.onClickItem(currentData.id)
 
-        if (selectedData.contains(currentData)) {
-            holder.cardView.setCardBackgroundColor(holder.itemView.context.resources.getColor(R.color.selectedBahanJasa))
-        } else {
-            holder.cardView.setCardBackgroundColor(holder.itemView.context.resources.getColor(R.color.white))
-        }
-
-        holder.itemView.setOnClickListener {
-            if (selectedData.contains(currentData)) {
-                selectedData.remove(currentData)
-            } else {
-                selectedData.add(currentData)
-            }
+            data.remove(currentData)
             notifyDataSetChanged()
         }
     }
@@ -66,6 +51,6 @@ class BahanJasaAdapter() : RecyclerView.Adapter<BahanJasaAdapter.ViewHolder>() {
         val textViewKeterangan = ItemView.findViewById<View>(R.id.textViewKeterangan) as TextView
         val textViewHarga = ItemView.findViewById<View>(R.id.textViewHarga) as TextView
         val imageViewBahanJasa = ItemView.findViewById<View>(R.id.imageViewBahanJasa) as ImageView
-        val cardView = ItemView.findViewById<View>(R.id.cardView) as CardView
+        val imageViewHapus = ItemView.findViewById<View>(R.id.imageViewHapus) as ImageView
     }
 }

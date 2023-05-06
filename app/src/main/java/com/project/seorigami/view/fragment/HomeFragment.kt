@@ -27,7 +27,7 @@ import com.project.seorigami.viewmodel.HomeViewModel
 class HomeFragment : Fragment() {
     private val listenerMitra = object : ItemClickListener<MitraDataModel> {
         override fun onClickItem(item: MitraDataModel) {
-            val intent = Intent(requireContext(), DetailLayananActivity::class.java)
+            val intent = Intent(requireActivity(), DetailLayananActivity::class.java)
             intent.putExtra(KeyIntent.MITRA_ID.name, item.id)
             startActivity(intent)
         }
@@ -43,10 +43,16 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private val listenerKategori = object : ItemClickListener<Int> {
+        override fun onClickItem(item: Int) {
+            viewModel.mitra(requireActivity(), "Malang", item)
+        }
+    }
+
     private var binding: FragmentHomeBinding? = null
     private lateinit var viewModel: HomeViewModel
     private lateinit var dialog: ProgressDialog
-    private var kategoriAdapter = KategoriAdapter()
+    private var kategoriAdapter = KategoriAdapter(listenerKategori)
     private var mitraAdapter = MitraAdapter(listenerMitra, listenerMapsMitra)
 
     override fun onCreateView(
@@ -56,16 +62,16 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        dialog = ProgressDialog(requireContext())
+        dialog = ProgressDialog(requireActivity())
         viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
         binding?.recyclerViewKategori?.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
             adapter = this@HomeFragment.kategoriAdapter
         }
 
         binding?.recyclerViewPenjahitTerdekat?.apply {
-            layoutManager = GridLayoutManager(context, resources.getInteger(R.integer.grid_count))
+            layoutManager = GridLayoutManager(requireActivity(), resources.getInteger(R.integer.grid_count))
             itemAnimator = null
             val marginDecoration = resources.getDimension(R.dimen.space_half).toInt()
             val marginDp = PixelHelper.convertDpToPx(marginDecoration, resources)
@@ -79,13 +85,17 @@ class HomeFragment : Fragment() {
             adapter = mitraAdapter
         }
 
-        viewModel.kategori(requireContext())
+        viewModel.kategori(requireActivity())
         viewModel.dataKategori.observe(requireActivity()) {
             kategoriAdapter.data = it ?: emptyList()
             kategoriAdapter.notifyDataSetChanged()
+
+            if (it.isNotEmpty()) {
+                viewModel.mitra(requireActivity(), "Malang", it.first().id)
+                kategoriAdapter.selected = it.first()
+            }
         }
 
-        viewModel.mitra(requireContext())
         viewModel.dataMitra.observe(requireActivity()) {
             mitraAdapter.data = it ?: emptyList()
             mitraAdapter.notifyDataSetChanged()
@@ -140,7 +150,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun showAlertDialog(message: String) {
-        val builder = AlertDialog.Builder(requireContext())
+        val builder = AlertDialog.Builder(requireActivity())
         builder.setTitle("Pesan")
         builder.setMessage(message)
         builder.setPositiveButton(android.R.string.yes) { dialog, which ->

@@ -17,9 +17,11 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:theme="@style/BottomNavigationView"
         app:labelVisibilityMode="unlabeled"
         app:backgroundTint="@color/white"
-        app:itemIconTint="@color/unselectedNavigation"
+        app:itemBackground="@color/white"
+        app:itemIconTint="@drawable/selector_navigation"
         app:menu="@menu/menu_bottom_navigation"/>
 
 </LinearLayout>

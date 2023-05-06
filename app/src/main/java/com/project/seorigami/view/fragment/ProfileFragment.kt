@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.project.seorigami.databinding.FragmentProfileBinding
+import com.project.seorigami.model.response.UserDataModel
 import com.project.seorigami.util.Prefs
 import com.project.seorigami.util.State
 import com.project.seorigami.view.activity.SignInActivity
@@ -30,6 +31,23 @@ class ProfileFragment : Fragment() {
         dialog = ProgressDialog(requireContext())
         viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
 
+
+        val dataUser = Prefs(requireActivity()).user!!
+        binding?.textInputEditTextNama?.setText(dataUser.name)
+        binding?.textInputEditTextEmail?.setText(dataUser.email)
+
+        binding?.buttonSimpan?.setOnClickListener {
+            if (validate()) {
+                viewModel.updatePelanggan(
+                    requireActivity(),
+                    dataUser.id,
+                    dataUser.email,
+                    binding?.textInputEditTextNama?.text.toString(),
+                    binding?.textInputEditTextPassword?.text.toString()
+                )
+            }
+        }
+
         binding?.buttonKeluar?.setOnClickListener {
             viewModel.logout(
                 it.context
@@ -45,6 +63,40 @@ class ProfileFragment : Fragment() {
                     val intent = Intent(context, SignInActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     startActivity(intent)
+                }
+
+                State.LOADING -> {
+                    showProgressDialog()
+                }
+
+                else -> {
+                    dialog.dismiss()
+                }
+            }
+        }
+
+        viewModel.stateUpdatePelanggan.observe(requireActivity()) {
+            when (it) {
+                State.COMPLETE -> {
+                    dialog.dismiss()
+                    val newDataUser = UserDataModel(
+                        `as` = dataUser.`as`,
+                        created_at = dataUser.created_at,
+                        email = dataUser.email,
+                        id = dataUser.id,
+                        id_cms_privileges = dataUser.id_cms_privileges,
+                        name = binding?.textInputEditTextNama?.text.toString(),
+                        os_token = dataUser.os_token,
+                        photo = dataUser.photo,
+                        status = dataUser.photo,
+                        updated_at = dataUser.updated_at,
+                        pelangganMitraData = dataUser.pelangganMitraData
+                    )
+
+                    Prefs(requireActivity()).user = null
+                    Prefs(requireActivity()).user = newDataUser
+
+                    showAlertDialog("Data user berhasil diperbarui")
                 }
 
                 State.LOADING -> {
@@ -81,6 +133,22 @@ class ProfileFragment : Fragment() {
             dialog.dismiss()
         }
         builder.show()
+    }
+
+    private fun validate(): Boolean {
+        var check = true
+
+        if (binding?.textInputEditTextNama?.text.isNullOrEmpty()) {
+            binding?.textInputEditTextNama?.error = "Mohon isi Nama anda"
+            check = false
+        }
+
+        if (binding?.textInputEditTextPassword?.text.isNullOrEmpty()) {
+            binding?.textInputEditTextPassword?.error = "Mohon isi Password anda"
+            check = false
+        }
+
+        return check
     }
 
     override fun onDestroyView() {

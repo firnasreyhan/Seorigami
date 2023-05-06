@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_bold"
-            tools:text="Buat Pesanan"
+            android:text="Buat Pesanan"
             android:textColor="@color/text"
             android:textSize="16sp"
             android:maxLines="1"

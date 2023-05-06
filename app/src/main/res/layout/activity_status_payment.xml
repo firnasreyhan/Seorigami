@@ -31,6 +31,7 @@
             android:textSize="24sp"/>
 
         <TextView
+            android:id="@+id/textViewTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
@@ -75,6 +76,7 @@
                     android:textSize="16sp"/>
 
                 <TextView
+                    android:id="@+id/textViewFaktur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
@@ -101,6 +103,7 @@
                     android:textSize="16sp"/>
 
                 <TextView
+                    android:id="@+id/textViewTanggal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
@@ -130,7 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
-                    tools:text="Bank Transfer"
+                    android:text="Bank Transfer"
                     android:textColor="@color/text"
                     android:textSize="16sp"/>
 
@@ -153,6 +156,7 @@
                     android:textSize="16sp"/>
 
                 <TextView
+                    android:id="@+id/textViewNamaPengirim"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"

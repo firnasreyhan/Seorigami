@@ -63,11 +63,14 @@
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     app:boxBackgroundColor="@color/white"
                     app:boxStrokeWidth="0dp"
-                    app:hintAnimationEnabled="false">
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="false">
 
                     <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTextViewJenis"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
@@ -82,6 +85,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -96,11 +100,14 @@
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     app:boxBackgroundColor="@color/white"
                     app:boxStrokeWidth="0dp"
-                    app:hintAnimationEnabled="false">
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="false">
 
                     <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTextViewKategori"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
@@ -115,6 +122,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -128,12 +136,14 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Jahit Kaos"
+                    android:layout_marginTop="4dp"
                     app:boxBackgroundColor="@color/white"
                     app:boxStrokeWidth="0dp"
-                    app:hintAnimationEnabled="false">
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextKeterangan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
@@ -141,7 +151,8 @@
                         android:lines="1"
                         android:maxLines="1"
                         android:textColor="@color/text"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:hint="Jahit Kaos" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -150,6 +161,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -163,12 +175,14 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="20000"
+                    android:layout_marginTop="4dp"
                     app:boxBackgroundColor="@color/white"
                     app:boxStrokeWidth="0dp"
-                    app:hintAnimationEnabled="false">
+                    app:hintAnimationEnabled="false"
+                    app:hintEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextHarga"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
@@ -176,7 +190,8 @@
                         android:lines="1"
                         android:maxLines="1"
                         android:textColor="@color/text"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:hint="20000" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -185,6 +200,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -196,9 +212,10 @@
                     android:textSize="12sp" />
 
                 <ImageView
+                    android:id="@+id/imageViewFoto"
                     android:layout_width="match_parent"
                     android:layout_height="240dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:src="@color/placeHolder"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"/>

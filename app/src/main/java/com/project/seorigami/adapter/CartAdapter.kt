@@ -35,7 +35,7 @@ class CartAdapter(private var listenerIsUpdatePrice: ItemClickListener<Boolean>)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentData = data[position]
         holder.textViewKeterangan.text = currentData.keterangan
-        holder.textViewHarga.text = Utils.changePrice(currentData.harga.toString())
+        holder.textViewHarga.text = "Rp ${Utils.changePrice(currentData.harga.toString())}"
 
         Glide.with(holder.itemView.context)
             .load(currentData.foto)
@@ -58,7 +58,6 @@ class CartAdapter(private var listenerIsUpdatePrice: ItemClickListener<Boolean>)
             } else {
                 currentData.qty--
                 currentData.subtotal = currentData.harga * currentData.qty
-                notifyDataSetChanged()
             }
 
             if (data.isEmpty()) {
@@ -66,6 +65,7 @@ class CartAdapter(private var listenerIsUpdatePrice: ItemClickListener<Boolean>)
             } else {
                 listenerIsUpdatePrice.onClickItem(true)
             }
+            notifyDataSetChanged()
         }
     }
 

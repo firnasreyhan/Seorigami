@@ -23,6 +23,7 @@
             android:src="@drawable/ic_round_arrow_back"/>
 
         <TextView
+            android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -158,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/poppins_medium"
-                tools:text="Jasa"
+                android:text="Jasa"
                 android:textColor="@color/text"
                 android:textSize="16sp"
                 android:maxLines="1"
@@ -181,7 +182,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_medium"
-                tools:text="Bahan"
+                android:text="Bahan"
                 android:textColor="@color/text"
                 android:textSize="16sp"
                 android:maxLines="1"

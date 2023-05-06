@@ -34,9 +34,9 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.autoCompleteTextViewDaftarSebagai.setOnItemClickListener { parent, view, position, id ->
             if (position == 0) {
-                daftarSebagai = 2
-            } else if (position == 1) {
                 daftarSebagai = 3
+            } else if (position == 1) {
+                daftarSebagai = 2
             }
         }
 
