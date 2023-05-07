@@ -29,7 +29,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="14dp"
         android:orientation="vertical">
 
@@ -47,9 +47,12 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewProgress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:clickable="true"
+                    android:foreground="?selectableItemBackground"
                     app:cardElevation="0dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="6dp">
@@ -73,9 +76,12 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewComplete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:clickable="true"
+                    android:foreground="?selectableItemBackground"
                     app:cardElevation="0dp"
                     app:cardBackgroundColor="@color/backgroundUnselectedCategory"
                     app:cardCornerRadius="6dp">
@@ -103,12 +109,23 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewProgressOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:overScrollMode="never"
             tools:listitem="@layout/item_history_order"
             tools:itemCount="3"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCompleteOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:overScrollMode="never"
+            tools:listitem="@layout/item_history_order"
+            tools:itemCount="3"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

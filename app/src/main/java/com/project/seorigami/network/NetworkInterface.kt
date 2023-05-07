@@ -5,6 +5,7 @@ import com.project.seorigami.model.request.SignOutRequestModel
 import com.project.seorigami.model.request.SignUpRequestModel
 import com.project.seorigami.model.request.TransactionRequestModel
 import com.project.seorigami.model.response.BaseResponseModel
+import com.project.seorigami.model.response.HistoryTransactionResponseModel
 import com.project.seorigami.model.response.KategoriResponseModel
 import com.project.seorigami.model.response.LayananResponseModel
 import com.project.seorigami.model.response.MitraResponseModel
@@ -64,6 +65,20 @@ interface NetworkInterface {
         @Header("Authorization") token: String,
         @Path("id") id: Int,
     ) : Call<LayananResponseModel>
+
+    @GET("transaksi/{id}")
+    fun getHistoryTransaction(
+        @Header("Accept") accept: String? = "application/json",
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+    ) : Call<HistoryTransactionResponseModel>
+
+    @GET("transaksi/mitra/confirm/{id}")
+    fun getConfirmTransaction(
+        @Header("Accept") accept: String? = "application/json",
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+    ) : Call<BaseResponseModel>
 
     @POST("transaksi")
     fun postTransaction(
