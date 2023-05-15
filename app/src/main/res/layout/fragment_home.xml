@@ -35,9 +35,11 @@
                 app:boxBackgroundColor="@color/white"
                 app:boxStrokeWidth="1dp"
                 app:hintAnimationEnabled="false"
-                app:startIconDrawable="@drawable/ic_outline_location">
+                app:startIconDrawable="@drawable/ic_outline_location"
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTextKabKota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
@@ -46,8 +48,9 @@
                     android:maxLines="1"
                     android:textColor="@color/text"
                     android:textSize="14sp"
-                    android:enabled="false"
-                    android:text="Malang"/>
+                    tools:text="Malang"
+                    android:clickable="true"
+                    android:focusable="false"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

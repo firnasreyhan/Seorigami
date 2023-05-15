@@ -1,10 +1,16 @@
 package com.project.seorigami.view.activity
 
+import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
 import com.project.seorigami.R
 import com.project.seorigami.databinding.ActivityMainBinding
 import com.project.seorigami.util.Prefs
@@ -29,6 +35,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             loadFragment(HomeFragment())
         }
         binding.bottomNavigation.setOnNavigationItemSelectedListener(this)
+
+        checkPermission()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -66,5 +74,37 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             return true
         }
         return false
+    }
+
+    private fun checkPermission() {
+        Dexter.withContext(this)
+            .withPermissions(
+                Manifest.permission.INTERNET,
+                Manifest.permission.POST_NOTIFICATIONS,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+            ).withListener(object : com.karumi.dexter.listener.multi.MultiplePermissionsListener {
+                override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
+                    p0?.let {
+//                        if(p0.areAllPermissionsGranted()){
+//                            moveActivity()
+//                        } else {
+////                                intentToMain()
+//                            //create toast
+//                            Toast.makeText(this@SplashScreenActivity, "Tolong berikan semua izin untuk aplikasi", Toast.LENGTH_LONG).show()
+//                            finish()
+//                        }
+                    }
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    p0: MutableList<PermissionRequest>?,
+                    p1: PermissionToken?
+                ) {
+                    p1?.continuePermissionRequest()
+                }
+
+            })
+            .check()
     }
 }

@@ -23,38 +23,6 @@ class SplashScreenActivity : AppCompatActivity() {
         moveActivity()
     }
 
-    private fun checkPermission() {
-        Dexter.withContext(this)
-            .withPermissions(
-                Manifest.permission.INTERNET,
-                Manifest.permission.POST_NOTIFICATIONS,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-            ).withListener(object : com.karumi.dexter.listener.multi.MultiplePermissionsListener {
-                override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
-                    p0?.let {
-                        if(p0.areAllPermissionsGranted()){
-                            moveActivity()
-                        } else {
-//                                intentToMain()
-                            //create toast
-                            Toast.makeText(this@SplashScreenActivity, "Tolong berikan semua izin untuk aplikasi", Toast.LENGTH_LONG).show()
-                            finish()
-                        }
-                    }
-                }
-
-                override fun onPermissionRationaleShouldBeShown(
-                    p0: MutableList<PermissionRequest>?,
-                    p1: PermissionToken?
-                ) {
-                    p1?.continuePermissionRequest()
-                }
-
-            })
-            .check()
-    }
-
     private fun moveActivity() {
         Handler().postDelayed({
             if (Prefs(this).jwt.isNullOrEmpty()) {
