@@ -46,7 +46,7 @@ class HistoryOrderAdapter(private var listenerIsDone: ItemClickListener<HistoryT
             .load(R.drawable.ic_logo_seorigami)
             .into(holder.circleImage)
 
-        if (isSeller || currentData.status == 0) {
+        if (isSeller && currentData.status == 0) {
             holder.button.visibility = View.VISIBLE
         } else {
             holder.button.visibility = View.GONE

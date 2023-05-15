@@ -56,16 +56,17 @@ class CartAdapter(private var listenerIsUpdatePrice: ItemClickListener<Boolean>)
             if (currentData.qty == 1) {
                 data.remove(currentData)
             } else {
-                currentData.qty--
+                currentData.qty = currentData.qty-1
                 currentData.subtotal = currentData.harga * currentData.qty
             }
+
+            notifyDataSetChanged()
 
             if (data.isEmpty()) {
                 listenerIsUpdatePrice.onClickItem(false)
             } else {
                 listenerIsUpdatePrice.onClickItem(true)
             }
-            notifyDataSetChanged()
         }
     }
 

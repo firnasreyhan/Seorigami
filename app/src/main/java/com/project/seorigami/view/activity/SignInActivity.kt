@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.onesignal.OneSignal
 import com.project.seorigami.databinding.ActivitySignInBinding
 import com.project.seorigami.util.State
 import com.project.seorigami.viewmodel.SignInViewModel
@@ -28,7 +29,8 @@ class SignInActivity : AppCompatActivity() {
                 viewModel.signIn(
                     it.context,
                     binding.textInputEditTextEmail.text.toString(),
-                    binding.textInputEditTextPassword.text.toString()
+                    binding.textInputEditTextPassword.text.toString(),
+                    OneSignal.getDeviceState()?.pushToken.toString()
                 )
             }
         }

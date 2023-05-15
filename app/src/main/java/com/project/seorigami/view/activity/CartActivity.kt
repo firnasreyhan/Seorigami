@@ -117,6 +117,7 @@ class CartActivity : AppCompatActivity() {
     }
 
     fun countTotalAndSubTotal() {
+        subtotal = 0
         cartAdapter.data.forEach {
             subtotal += it.subtotal
         }

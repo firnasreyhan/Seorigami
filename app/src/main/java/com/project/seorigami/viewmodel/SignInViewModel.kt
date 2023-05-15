@@ -16,14 +16,14 @@ class SignInViewModel : ViewModel() {
     var stateLogin = MutableLiveData<State>()
     var errorMessage = MutableLiveData<String>()
 
-    fun signIn(context: Context, email: String, password: String) {
+    fun signIn(context: Context, email: String, password: String, token: String) {
         stateLogin.value = State.LOADING
         NetworkClient()
             .getService(context)
             .postSignIn(
                 signInRequestModel = SignInRequestModel(
                     email,
-                    "222",
+                    token,
                     password
                 )
             )
