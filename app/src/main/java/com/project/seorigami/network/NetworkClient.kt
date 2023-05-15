@@ -18,9 +18,9 @@ class NetworkClient {
         interceptor.level = HttpLoggingInterceptor.Level.BODY
 
         return OkHttpClient.Builder()
-            .readTimeout(10, TimeUnit.MINUTES)
-            .connectTimeout(10, TimeUnit.MINUTES)
-            .writeTimeout(10, TimeUnit.MINUTES)
+            .readTimeout(1, TimeUnit.MINUTES)
+            .connectTimeout(1, TimeUnit.MINUTES)
+            .writeTimeout(1, TimeUnit.MINUTES)
             .addInterceptor(interceptor)
             .addInterceptor(ChuckerInterceptor(context))
             .build()

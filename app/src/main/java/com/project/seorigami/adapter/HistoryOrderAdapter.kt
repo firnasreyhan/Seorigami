@@ -38,7 +38,6 @@ class HistoryOrderAdapter(private var listenerIsDone: ItemClickListener<HistoryT
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentData = data[position]
-        holder.textViewNama.text = currentData.mitra_id.toString()
         holder.textViewFaktur.text = currentData.faktur
         holder.textViewTotal.text = "${Utils.changePrice(currentData.total.toString())}"
 
@@ -46,10 +45,14 @@ class HistoryOrderAdapter(private var listenerIsDone: ItemClickListener<HistoryT
             .load(R.drawable.ic_logo_seorigami)
             .into(holder.circleImage)
 
-        if (isSeller && currentData.status == 0) {
-            holder.button.visibility = View.VISIBLE
+        if (isSeller) {
+            if (currentData.status == 0) {
+                holder.button.visibility = View.VISIBLE
+            }
+            holder.textViewNama.text = currentData.user.name
         } else {
             holder.button.visibility = View.GONE
+            holder.textViewNama.text = currentData.mitra.nama
         }
 
         holder.button.setOnClickListener {

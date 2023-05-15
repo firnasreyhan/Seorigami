@@ -65,6 +65,7 @@ class OrderViewModel: ViewModel() {
                 ) {
                     if (response.isSuccessful) {
                         stateConfirmOrder.value = State.COMPLETE
+                        order(context)
                     } else {
                         stateConfirmOrder.value = State.ERROR
                         errorMessage.value = response.errorBody()?.string()

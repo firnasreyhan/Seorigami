@@ -5,6 +5,7 @@ data class HistoryTransactionItemModel(
     val created_at: String,
     val faktur: String,
     val id: Int,
+    val mitra: MitraDataModel,
     val mitra_id: Int,
     val payment: Any,
     val payment_method: Any,
@@ -15,5 +16,6 @@ data class HistoryTransactionItemModel(
     val tanggal: String,
     val total: Int,
     val updated_at: String,
+    val user: UserDataModel,
     val user_id: Int
 )
