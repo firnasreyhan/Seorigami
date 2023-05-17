@@ -233,26 +233,26 @@ class HomeFragment : Fragment() {
     }
 
     private fun getGeocoder(location: Location) {
-        val geocoder = Geocoder(requireActivity(), Locale.getDefault())
-        var addresses: List<Address>? = emptyList()
+        if (isFirstOpen) {
+            val geocoder = Geocoder(requireActivity(), Locale.getDefault())
+            var addresses: List<Address>? = emptyList()
 
-        try {
-            addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+            try {
+                addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
 
-        if (!addresses.isNullOrEmpty()) {
-            if (isFirstOpen) {
+            if (!addresses.isNullOrEmpty()) {
                 Log.e("subAdminArea", addresses[0].subAdminArea.toString())
                 kabKota = addresses[0].subAdminArea.toString().removePrefix("Kabupaten ").removePrefix("Kota ").removeSuffix(" Regency")
                 binding?.textInputEditTextKabKota?.setText(kabKota)
 
                 viewModel.kategori(requireActivity())
                 isFirstOpen = false
+            } else {
+                startLocationUpdates()
             }
-        } else {
-            startLocationUpdates()
         }
     }
 
