@@ -1,10 +1,40 @@
 {
   "project_info": {
     "project_number": "824980269001",
+    "firebase_url": "https://ta-penjahit-app-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "ta-penjahit-app",
     "storage_bucket": "ta-penjahit-app.appspot.com"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824980269001:android:1d9d2ed7f93ed0e748ea18",
+        "android_client_info": {
+          "package_name": "com.project.newseorigami"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824980269001-p3km6ek5h2rpfjif3f96ch3969a0bhda.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJ3IaXR4XPWNaJLZzgIhcebf-35s6uMDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824980269001-p3km6ek5h2rpfjif3f96ch3969a0bhda.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:824980269001:android:924687e87f31cf9348ea18",

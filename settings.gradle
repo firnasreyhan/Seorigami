@@ -3,6 +3,9 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+//        maven {
+//            url "https://github.com/QuickBlox/quickblox-android-sdk-releases/raw/master/"
+//        }
         maven { url "https://jitpack.io" }
         maven {
             url 'https://api.mapbox.com/downloads/v2/releases/maven'
@@ -24,6 +27,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+//        maven {
+//            url "https://github.com/QuickBlox/quickblox-android-sdk-releases/raw/master/"
+//        }
         maven { url "https://jitpack.io" }
         maven {
             url 'https://api.mapbox.com/downloads/v2/releases/maven'

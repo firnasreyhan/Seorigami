@@ -88,7 +88,7 @@ class ProfileFragment : Fragment() {
                         name = binding?.textInputEditTextNama?.text.toString(),
                         os_token = dataUser.os_token,
                         photo = dataUser.photo,
-                        status = dataUser.photo,
+                        status = dataUser.status,
                         updated_at = dataUser.updated_at,
                         pelangganMitraData = dataUser.pelangganMitraData
                     )

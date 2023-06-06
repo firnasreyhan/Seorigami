@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Seorigami"
         tools:targetApi="31">
         <activity
+            android:name=".view.activity.ChatWindowActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activity.MapsActivity"
             android:exported="false" />
         <activity

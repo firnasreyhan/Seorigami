@@ -8,6 +8,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.project.seorigami.R
 import com.project.seorigami.adapter.BahanJasaAdapter
 import com.project.seorigami.databinding.ActivityDetailLayananBinding
@@ -24,6 +26,7 @@ class DetailLayananActivity : AppCompatActivity() {
     private var bahanAdapter = BahanJasaAdapter()
     private var jasaAdapter = BahanJasaAdapter()
     private var pinpoint: String = ""
+    private var mitraName: String = ""
     private var mitraId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +49,7 @@ class DetailLayananActivity : AppCompatActivity() {
 
         viewModel.layanan(this, mitraId)
         viewModel.dataLayanan.observe(this) {
+            mitraName = it.nama
             binding.textViewTitle.text = it.nama
             binding.textViewNama.text = it.nama
             binding.textViewKota.text = it.kota
@@ -62,6 +66,13 @@ class DetailLayananActivity : AppCompatActivity() {
             jasaAdapter.data.addAll(it.jasa)
             bahanAdapter.notifyDataSetChanged()
             jasaAdapter.notifyDataSetChanged()
+        }
+
+        binding.buttonChat.setOnClickListener {
+            val intent = Intent(this, ChatWindowActivity::class.java)
+            intent.putExtra(KeyIntent.MITRA_ID.name, mitraId)
+            intent.putExtra(KeyIntent.MITRA_NAME.name, mitraName)
+            startActivity(intent)
         }
 
         binding.imageViewMaps.setOnClickListener {

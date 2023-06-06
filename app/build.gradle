@@ -89,7 +89,16 @@ dependencies {
     //firebase
     implementation platform('com.google.firebase:firebase-bom:32.0.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-database-ktx'
 
     //Dexter
     implementation 'com.karumi:dexter:6.2.3'
+
+//    //Quickblox
+//    implementation "com.quickblox:quickblox-android-sdk-messages:4.1.1"
+//    implementation "com.quickblox:quickblox-android-sdk-chat:4.1.1"
+//    implementation "com.quickblox:quickblox-android-sdk-content:4.1.1"
+//    implementation "com.quickblox:quickblox-android-sdk-videochat-webrtc:4.1.1"
+//    implementation "com.quickblox:quickblox-android-sdk-conference:4.1.1"
+//    implementation "com.quickblox:quickblox-android-sdk-customobjects:4.1.1"
 }
