@@ -17,6 +17,7 @@ import com.project.seorigami.model.response.BahanJasaDataModel
 import com.project.seorigami.model.response.MitraDataModel
 import com.project.seorigami.util.ItemClickListener
 import com.project.seorigami.util.KeyIntent
+import com.project.seorigami.util.Utils
 import com.project.seorigami.viewmodel.DetailLayananViewModel
 import com.project.seorigami.viewmodel.HomeViewModel
 
@@ -59,7 +60,9 @@ class DetailLayananActivity : AppCompatActivity() {
             pinpoint = it.pinpoint
 
             Glide.with(this)
-                .load(it.foto)
+                .load(Utils.reformatImageUrl(it.foto))
+                .placeholder(R.drawable.ic_logo_seorigami)
+                .error(R.drawable.ic_logo_seorigami)
                 .into(binding.imageViewLayanan)
 
             bahanAdapter.data.clear()

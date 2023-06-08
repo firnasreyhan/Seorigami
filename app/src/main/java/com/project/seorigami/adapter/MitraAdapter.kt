@@ -12,6 +12,7 @@ import com.project.seorigami.model.response.KategoriDataModel
 import com.project.seorigami.model.response.MitraDataModel
 import com.project.seorigami.util.ItemClickListener
 import com.project.seorigami.util.PixelHelper
+import com.project.seorigami.util.Utils
 
 class MitraAdapter(private var listenerItem: ItemClickListener<MitraDataModel>, private var listenerMaps: ItemClickListener<String>) : RecyclerView.Adapter<MitraAdapter.ViewHolder>() {
     var data: List<MitraDataModel> = emptyList()
@@ -32,7 +33,9 @@ class MitraAdapter(private var listenerItem: ItemClickListener<MitraDataModel>, 
         holder.textViewKotaMitra.text = currentData.kota
 
         Glide.with(holder.itemView.context)
-            .load(currentData.foto)
+            .load(Utils.reformatImageUrl(currentData.foto))
+            .placeholder(R.drawable.ic_logo_seorigami)
+            .error(R.drawable.ic_logo_seorigami)
             .into(holder.imageViewMitra)
 
         holder.itemView.setOnClickListener {

@@ -8,6 +8,10 @@ object Utils {
         return "Bearer ${Prefs(context).jwt.toString()}"
     }
 
+    fun reformatImageUrl(url: String) : String {
+        return "https://mdthosting.com/penjahitapp/public/${url}"
+    }
+
     fun changePrice(text: String): String {
         var formatPrice = ""
 

@@ -36,7 +36,9 @@ class BahanJasaMitraAdapter(private var listenerHapus: ItemClickListener<Int>) :
         holder.textViewHarga.text = "Rp ${Utils.changePrice(currentData.harga.toString())}"
 
         Glide.with(holder.itemView.context)
-            .load(currentData.foto)
+            .load(Utils.reformatImageUrl(currentData.foto))
+            .placeholder(R.drawable.ic_logo_seorigami)
+            .error(R.drawable.ic_logo_seorigami)
             .into(holder.imageViewBahanJasa)
 
         holder.imageViewHapus.setOnClickListener {

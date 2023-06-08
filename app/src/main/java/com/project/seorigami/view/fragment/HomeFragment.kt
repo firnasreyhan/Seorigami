@@ -128,15 +128,15 @@ class HomeFragment : Fragment() {
         binding?.recyclerViewPenjahitTerdekat?.apply {
             layoutManager = GridLayoutManager(requireActivity(), resources.getInteger(R.integer.grid_count))
             itemAnimator = null
-            val marginDecoration = resources.getDimension(R.dimen.space_half).toInt()
-            val marginDp = PixelHelper.convertDpToPx(marginDecoration, resources)
-            addItemDecoration(
-                GridItemDecoration(
-                    resources.getInteger(R.integer.grid_count),
-                    marginDp,
-                    true
-                )
-            )
+//            val marginDecoration = resources.getDimension(R.dimen.space_half).toInt()
+//            val marginDp = PixelHelper.convertDpToPx(marginDecoration, resources)
+//            addItemDecoration(
+//                GridItemDecoration(
+//                    resources.getInteger(R.integer.grid_count),
+//                    marginDp,
+//                    true
+//                )
+//            )
             adapter = mitraAdapter
         }
 

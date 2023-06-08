@@ -17,12 +17,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.project.seorigami.R
 import com.project.seorigami.databinding.FragmentProfileMitraBinding
 import com.project.seorigami.model.response.PelangganMitraDataModel
 import com.project.seorigami.model.response.UserDataModel
 import com.project.seorigami.util.KeyIntent
 import com.project.seorigami.util.Prefs
 import com.project.seorigami.util.State
+import com.project.seorigami.util.Utils
 import com.project.seorigami.view.activity.MapsActivity
 import com.project.seorigami.view.activity.SignInActivity
 import com.project.seorigami.viewmodel.ProfileViewModel
@@ -54,7 +56,9 @@ class ProfileMitraFragment : Fragment() {
         binding?.textInputEditTextKabKota?.setText(dataUser.pelangganMitraData.kota)
         binding?.let {
             Glide.with(this)
-                .load(dataUser.pelangganMitraData.foto)
+                .load(Utils.reformatImageUrl(dataUser.pelangganMitraData.foto))
+                .placeholder(R.drawable.ic_logo_seorigami)
+                .error(R.drawable.ic_logo_seorigami)
                 .into(it.imageViewFoto)
         }
 
@@ -238,6 +242,8 @@ class ProfileMitraFragment : Fragment() {
                     binding?.let {
                         Glide.with(this)
                             .load(uri)
+                            .placeholder(R.drawable.ic_logo_seorigami)
+                            .error(R.drawable.ic_logo_seorigami)
                             .into(it.imageViewFoto)
                     }
 

@@ -38,6 +38,8 @@ class BahanJasaAdapter() : RecyclerView.Adapter<BahanJasaAdapter.ViewHolder>() {
 
         Glide.with(holder.itemView.context)
             .load(currentData.foto)
+            .placeholder(R.drawable.ic_logo_seorigami)
+            .error(R.drawable.ic_logo_seorigami)
             .into(holder.imageViewBahanJasa)
 
         (holder.itemView.layoutParams as ViewGroup.MarginLayoutParams).apply {

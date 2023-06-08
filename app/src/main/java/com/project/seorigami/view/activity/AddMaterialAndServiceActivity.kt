@@ -159,6 +159,8 @@ class AddMaterialAndServiceActivity : AppCompatActivity() {
                 // Use Uri object instead of File to avoid storage permissions
                 Glide.with(this)
                     .load(uri)
+                    .placeholder(R.drawable.ic_logo_seorigami)
+                    .error(R.drawable.ic_logo_seorigami)
                     .into(binding.imageViewFoto)
 
                 layananUri = uri

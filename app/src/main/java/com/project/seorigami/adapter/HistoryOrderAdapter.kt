@@ -43,6 +43,8 @@ class HistoryOrderAdapter(private var listenerIsDone: ItemClickListener<HistoryT
 
         Glide.with(holder.itemView.context)
             .load(R.drawable.ic_logo_seorigami)
+            .placeholder(R.drawable.ic_logo_seorigami)
+            .error(R.drawable.ic_logo_seorigami)
             .into(holder.circleImage)
 
         if (isSeller) {

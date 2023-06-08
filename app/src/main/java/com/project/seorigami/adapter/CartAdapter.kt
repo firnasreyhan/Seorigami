@@ -39,6 +39,8 @@ class CartAdapter(private var listenerIsUpdatePrice: ItemClickListener<Boolean>)
 
         Glide.with(holder.itemView.context)
             .load(currentData.foto)
+            .placeholder(R.drawable.ic_logo_seorigami)
+            .error(R.drawable.ic_logo_seorigami)
             .into(holder.circleImage)
 
         holder.textViewSubtotal.text = Utils.changePrice(currentData.subtotal.toString())
