@@ -9,6 +9,7 @@ data class LayananDataModel(
     val deskripsi: String,
     val foto: String,
     val id: Int,
+    val user_id: Int,
     val jasa: List<BahanJasaDataModel>,
     val kota: String,
     val nama: String,

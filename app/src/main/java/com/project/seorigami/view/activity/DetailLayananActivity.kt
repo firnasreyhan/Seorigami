@@ -28,6 +28,7 @@ class DetailLayananActivity : AppCompatActivity() {
     private var pinpoint: String = ""
     private var mitraName: String = ""
     private var mitraId: Int = 0
+    private var userMitraId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +50,7 @@ class DetailLayananActivity : AppCompatActivity() {
 
         viewModel.layanan(this, mitraId)
         viewModel.dataLayanan.observe(this) {
+            userMitraId = it.user_id
             mitraName = it.nama
             binding.textViewTitle.text = it.nama
             binding.textViewNama.text = it.nama
@@ -70,7 +72,7 @@ class DetailLayananActivity : AppCompatActivity() {
 
         binding.buttonChat.setOnClickListener {
             val intent = Intent(this, ChatWindowActivity::class.java)
-            intent.putExtra(KeyIntent.MITRA_ID.name, mitraId)
+            intent.putExtra(KeyIntent.MITRA_ID.name, userMitraId)
             intent.putExtra(KeyIntent.MITRA_NAME.name, mitraName)
             startActivity(intent)
         }

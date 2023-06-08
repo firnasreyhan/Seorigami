@@ -158,6 +158,14 @@ class HomeFragment : Fragment() {
         viewModel.dataMitra.observe(requireActivity()) {
             mitraAdapter.data = it ?: emptyList()
             mitraAdapter.notifyDataSetChanged()
+
+            if (it.isNullOrEmpty()) {
+                binding?.recyclerViewPenjahitTerdekat?.visibility = View.GONE
+                binding?.linearLayoutKosong?.visibility = View.VISIBLE
+            } else {
+                binding?.recyclerViewPenjahitTerdekat?.visibility = View.VISIBLE
+                binding?.linearLayoutKosong?.visibility = View.GONE
+            }
         }
 
 //        viewModel.stateKategori.observe(requireActivity()) {

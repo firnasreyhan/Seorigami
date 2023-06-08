@@ -90,12 +90,19 @@ class HomeMitraFragment : Fragment() {
             startActivity(Intent(requireActivity(), AddMaterialAndServiceActivity::class.java))
         }
 
-        viewModel.layanan(requireActivity())
         viewModel.dataLayanan.observe(requireActivity()) {
             bahanMitraAdapter.data = it.bahan.toMutableList()
             jasaMitraAdapter.data = it.jasa.toMutableList()
             bahanMitraAdapter.notifyDataSetChanged()
             jasaMitraAdapter.notifyDataSetChanged()
+
+            if (it.bahan.isNullOrEmpty() && it.jasa.isNullOrEmpty()) {
+                binding?.linearLayoutKosong?.visibility = View.VISIBLE
+                binding?.linearLayoutKonten?.visibility = View.GONE
+            } else {
+                binding?.linearLayoutKosong?.visibility = View.GONE
+                binding?.linearLayoutKonten?.visibility = View.VISIBLE
+            }
         }
 
         return binding?.root
@@ -106,4 +113,8 @@ class HomeMitraFragment : Fragment() {
         binding = null
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.layanan(requireActivity())
+    }
 }

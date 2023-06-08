@@ -89,6 +89,14 @@ class OrderFragment : Fragment() {
 
             completeOrderAdapter.notifyDataSetChanged()
             progressOrderAdapter.notifyDataSetChanged()
+
+            if (completeData.isNullOrEmpty() && progressData.isNullOrEmpty()) {
+                binding?.linearLayoutKosong?.visibility = View.VISIBLE
+                binding?.linearLayoutKonten?.visibility = View.GONE
+            } else {
+                binding?.linearLayoutKosong?.visibility = View.GONE
+                binding?.linearLayoutKonten?.visibility = View.VISIBLE
+            }
         }
 
         return binding?.root

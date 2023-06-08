@@ -14,6 +14,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.project.seorigami.R
 import com.project.seorigami.databinding.ActivityMainBinding
 import com.project.seorigami.util.Prefs
+import com.project.seorigami.view.fragment.ChatHistoryFragment
 import com.project.seorigami.view.fragment.HomeFragment
 import com.project.seorigami.view.fragment.HomeMitraFragment
 import com.project.seorigami.view.fragment.OrderFragment
@@ -51,6 +52,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
             R.id.page_order -> {
                 loadFragment(OrderFragment())
+                return true
+            }
+            R.id.page_chat -> {
+                loadFragment(ChatHistoryFragment())
                 return true
             }
             R.id.page_profile -> {

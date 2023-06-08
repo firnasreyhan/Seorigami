@@ -83,16 +83,52 @@
                 android:textColor="@color/text"
                 android:textSize="16sp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewPenjahitTerdekat"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:overScrollMode="never"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/item_mitra"
-                tools:itemCount="10"/>
+                android:layout_marginTop="12dp">
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutKosong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="48dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_undraw_empty"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Tidak Ada Data"
+                        android:textColor="@color/text"
+                        android:textSize="16sp"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:ellipsize="end"/>
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewPenjahitTerdekat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2"
+                    tools:listitem="@layout/item_mitra"
+                    tools:itemCount="10"
+                    android:visibility="gone"/>
+
+            </FrameLayout>
 
         </LinearLayout>
 
