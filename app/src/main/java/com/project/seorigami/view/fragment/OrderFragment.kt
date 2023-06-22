@@ -1,5 +1,7 @@
 package com.project.seorigami.view.fragment
 
+import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,6 +19,7 @@ import com.project.seorigami.model.response.MitraDataModel
 import com.project.seorigami.util.ItemClickListener
 import com.project.seorigami.util.KeyIntent
 import com.project.seorigami.util.Prefs
+import com.project.seorigami.util.State
 import com.project.seorigami.view.activity.DetailLayananActivity
 import com.project.seorigami.viewmodel.HomeViewModel
 import com.project.seorigami.viewmodel.OrderViewModel
@@ -30,6 +33,7 @@ class OrderFragment : Fragment() {
 
     private var binding: FragmentOrderBinding? = null
     private lateinit var viewModel: OrderViewModel
+    private lateinit var dialog: ProgressDialog
     private var progressOrderAdapter = HistoryOrderAdapter(listenerIsDone)
     private var completeOrderAdapter = HistoryOrderAdapter(listenerIsDone)
 
@@ -40,6 +44,7 @@ class OrderFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentOrderBinding.inflate(inflater, container, false)
 
+        dialog = ProgressDialog(requireActivity())
         viewModel = ViewModelProvider(this)[OrderViewModel::class.java]
 
         binding?.recyclerViewCompleteOrder?.apply {
@@ -99,11 +104,66 @@ class OrderFragment : Fragment() {
             }
         }
 
+        viewModel.stateOrder.observe(requireActivity()) {
+            when (it) {
+                State.COMPLETE -> {
+                    dialog.dismiss()
+                }
+
+                State.LOADING -> {
+                    showProgressDialog()
+                }
+
+                else -> {
+                    dialog.dismiss()
+                }
+            }
+        }
+
+        viewModel.stateConfirmOrder.observe(requireActivity()) {
+            when (it) {
+                State.COMPLETE -> {
+                    dialog.dismiss()
+                }
+
+                State.LOADING -> {
+                    showProgressDialog()
+                }
+
+                else -> {
+                    dialog.dismiss()
+                }
+            }
+        }
+
+        viewModel.errorMessage.observe(requireActivity()) {
+            if (!it.isNullOrEmpty()) {
+                showAlertDialog(it.toString())
+            }
+        }
+
         return binding?.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    private fun showProgressDialog() {
+        //show dialog
+        dialog.setMessage("Mohon tunggu...")
+        dialog.setCancelable(false)
+        dialog.show()
+    }
+
+    private fun showAlertDialog(message: String) {
+        val builder = AlertDialog.Builder(requireActivity())
+        builder.setTitle("Pesan")
+        builder.setMessage(message)
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            dialog.dismiss()
+        }
+        builder.show()
     }
 }

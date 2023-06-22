@@ -44,6 +44,7 @@ import com.project.seorigami.util.GridItemDecoration
 import com.project.seorigami.util.ItemClickListener
 import com.project.seorigami.util.KeyIntent
 import com.project.seorigami.util.PixelHelper
+import com.project.seorigami.util.State
 import com.project.seorigami.view.activity.DetailLayananActivity
 import com.project.seorigami.view.activity.MapsActivity
 import com.project.seorigami.viewmodel.HomeViewModel
@@ -168,37 +169,37 @@ class HomeFragment : Fragment() {
             }
         }
 
-//        viewModel.stateKategori.observe(requireActivity()) {
-//            when (it) {
-//                State.COMPLETE -> {
-//                    dialog.dismiss()
-//                }
-//
-//                State.LOADING -> {
-//                    showProgressDialog()
-//                }
-//
-//                else -> {
-//                    dialog.dismiss()
-//                }
-//            }
-//        }
-//
-//        viewModel.stateMitra.observe(requireActivity()) {
-//            when (it) {
-//                State.COMPLETE -> {
-//                    dialog.dismiss()
-//                }
-//
-//                State.LOADING -> {
-//                    showProgressDialog()
-//                }
-//
-//                else -> {
-//                    dialog.dismiss()
-//                }
-//            }
-//        }
+        viewModel.stateKategori.observe(requireActivity()) {
+            when (it) {
+                State.COMPLETE -> {
+                    dialog.dismiss()
+                }
+
+                State.LOADING -> {
+                    showProgressDialog()
+                }
+
+                else -> {
+                    dialog.dismiss()
+                }
+            }
+        }
+
+        viewModel.stateMitra.observe(requireActivity()) {
+            when (it) {
+                State.COMPLETE -> {
+                    dialog.dismiss()
+                }
+
+                State.LOADING -> {
+                    showProgressDialog()
+                }
+
+                else -> {
+                    dialog.dismiss()
+                }
+            }
+        }
 
         viewModel.errorMessage.observe(requireActivity()) {
             if (!it.isNullOrEmpty()) {

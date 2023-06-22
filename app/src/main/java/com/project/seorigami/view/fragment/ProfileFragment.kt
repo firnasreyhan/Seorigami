@@ -54,6 +54,38 @@ class ProfileFragment : Fragment() {
             )
         }
 
+        viewModel.stateUpdateMitra.observe(requireActivity()) {
+            when (it) {
+                State.COMPLETE -> {
+                    dialog.dismiss()
+                }
+
+                State.LOADING -> {
+                    showProgressDialog()
+                }
+
+                else -> {
+                    dialog.dismiss()
+                }
+            }
+        }
+
+        viewModel.stateUpdatePelanggan.observe(requireActivity()) {
+            when (it) {
+                State.COMPLETE -> {
+                    dialog.dismiss()
+                }
+
+                State.LOADING -> {
+                    showProgressDialog()
+                }
+
+                else -> {
+                    dialog.dismiss()
+                }
+            }
+        }
+
         viewModel.stateLogout.observe(requireActivity()) {
             when (it) {
                 State.COMPLETE -> {

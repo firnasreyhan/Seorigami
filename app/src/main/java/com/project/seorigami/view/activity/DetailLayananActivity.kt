@@ -1,5 +1,7 @@
 package com.project.seorigami.view.activity
 
+import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +19,7 @@ import com.project.seorigami.model.response.BahanJasaDataModel
 import com.project.seorigami.model.response.MitraDataModel
 import com.project.seorigami.util.ItemClickListener
 import com.project.seorigami.util.KeyIntent
+import com.project.seorigami.util.State
 import com.project.seorigami.util.Utils
 import com.project.seorigami.viewmodel.DetailLayananViewModel
 import com.project.seorigami.viewmodel.HomeViewModel
@@ -24,6 +27,7 @@ import com.project.seorigami.viewmodel.HomeViewModel
 class DetailLayananActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailLayananBinding
     private lateinit var  viewModel: DetailLayananViewModel
+    private lateinit var dialog: ProgressDialog
     private var bahanAdapter = BahanJasaAdapter()
     private var jasaAdapter = BahanJasaAdapter()
     private var pinpoint: String = ""
@@ -37,7 +41,7 @@ class DetailLayananActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         mitraId = intent.getIntExtra(KeyIntent.MITRA_ID.name, 0)
-
+        dialog = ProgressDialog(this)
         viewModel = ViewModelProvider(this)[DetailLayananViewModel::class.java]
 
         binding.recyclerViewBahan.apply {
@@ -73,6 +77,28 @@ class DetailLayananActivity : AppCompatActivity() {
             jasaAdapter.notifyDataSetChanged()
         }
 
+        viewModel.stateLayanan.observe(this) {
+            when (it) {
+                State.COMPLETE -> {
+                    dialog.dismiss()
+                }
+
+                State.LOADING -> {
+                    showProgressDialog()
+                }
+
+                else -> {
+                    dialog.dismiss()
+                }
+            }
+        }
+
+        viewModel.errorMessage.observe(this) {
+            if (!it.isNullOrEmpty()) {
+                showAlertDialog(it.toString())
+            }
+        }
+
         binding.buttonChat.setOnClickListener {
             val intent = Intent(this, ChatWindowActivity::class.java)
             intent.putExtra(KeyIntent.MITRA_ID.name, userMitraId)
@@ -104,5 +130,22 @@ class DetailLayananActivity : AppCompatActivity() {
             intent.putExtra(KeyIntent.MITRA_ID.name, mitraId)
             startActivity(intent)
         }
+    }
+
+    private fun showProgressDialog() {
+        //show dialog
+        dialog.setMessage("Mohon tunggu...")
+        dialog.setCancelable(false)
+        dialog.show()
+    }
+
+    private fun showAlertDialog(message: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Pesan")
+        builder.setMessage(message)
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            dialog.dismiss()
+        }
+        builder.show()
     }
 }

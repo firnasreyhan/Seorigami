@@ -7,4 +7,5 @@ enum class KeyIntent {
     TRANSACTION_DATA,
     LAT_LONG_DATA,
     KOTA_DATA,
+    URL_PAYMENT,
 }

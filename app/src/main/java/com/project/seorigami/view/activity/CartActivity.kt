@@ -87,7 +87,11 @@ class CartActivity : AppCompatActivity() {
 
         viewModel.transactionData.observe(this) {
             if (it != null) {
-                val intent = Intent(this, StatusPaymentActivity::class.java)
+//                val intent = Intent(this, StatusPaymentActivity::class.java)
+//                intent.putExtra(KeyIntent.TRANSACTION_DATA.name, it)
+//                startActivity(intent)
+                val intent = Intent(this, PaymentWebViewActivity::class.java)
+                intent.putExtra(KeyIntent.URL_PAYMENT.name, it.flip_url)
                 intent.putExtra(KeyIntent.TRANSACTION_DATA.name, it)
                 startActivity(intent)
             }

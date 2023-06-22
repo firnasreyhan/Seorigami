@@ -1,5 +1,7 @@
 package com.project.seorigami.view.fragment
 
+import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,6 +17,7 @@ import com.project.seorigami.databinding.FragmentHomeMitraBinding
 import com.project.seorigami.util.GridItemDecoration
 import com.project.seorigami.util.ItemClickListener
 import com.project.seorigami.util.PixelHelper
+import com.project.seorigami.util.State
 import com.project.seorigami.view.activity.AddMaterialAndServiceActivity
 import com.project.seorigami.viewmodel.HomeMitraViewModel
 import com.project.seorigami.viewmodel.HomeViewModel
@@ -28,6 +31,7 @@ class HomeMitraFragment : Fragment() {
 
     private var binding: FragmentHomeMitraBinding? = null
     private lateinit var viewModel: HomeMitraViewModel
+    private lateinit var dialog: ProgressDialog
     private var bahanMitraAdapter = BahanJasaMitraAdapter(listenerHapus)
     private var jasaMitraAdapter = BahanJasaMitraAdapter(listenerHapus)
 
@@ -38,6 +42,7 @@ class HomeMitraFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeMitraBinding.inflate(inflater, container, false)
 
+        dialog = ProgressDialog(requireActivity())
         viewModel = ViewModelProvider(this)[HomeMitraViewModel::class.java]
 
         binding?.recyclerViewBahan?.apply {
@@ -105,6 +110,44 @@ class HomeMitraFragment : Fragment() {
             }
         }
 
+        viewModel.stateLayanan.observe(requireActivity()) {
+            when (it) {
+                State.COMPLETE -> {
+                    dialog.dismiss()
+                }
+
+                State.LOADING -> {
+                    showProgressDialog()
+                }
+
+                else -> {
+                    dialog.dismiss()
+                }
+            }
+        }
+
+        viewModel.stateHapusLayanan.observe(requireActivity()) {
+            when (it) {
+                State.COMPLETE -> {
+                    dialog.dismiss()
+                }
+
+                State.LOADING -> {
+                    showProgressDialog()
+                }
+
+                else -> {
+                    dialog.dismiss()
+                }
+            }
+        }
+
+        viewModel.errorMessage.observe(requireActivity()) {
+            if (!it.isNullOrEmpty()) {
+                showAlertDialog(it.toString())
+            }
+        }
+
         return binding?.root
     }
 
@@ -116,5 +159,22 @@ class HomeMitraFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.layanan(requireActivity())
+    }
+
+    private fun showProgressDialog() {
+        //show dialog
+        dialog.setMessage("Mohon tunggu...")
+        dialog.setCancelable(false)
+        dialog.show()
+    }
+
+    private fun showAlertDialog(message: String) {
+        val builder = AlertDialog.Builder(requireActivity())
+        builder.setTitle("Pesan")
+        builder.setMessage(message)
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            dialog.dismiss()
+        }
+        builder.show()
     }
 }

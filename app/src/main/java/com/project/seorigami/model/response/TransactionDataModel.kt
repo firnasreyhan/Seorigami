@@ -9,11 +9,12 @@ data class TransactionDataModel(
     val created_at: String,
     val detail: List<TransactionDataItemModel>,
     val faktur: String,
+    val flip_url: String,
     val id: Int,
     val mitra_id: Int,
     val subtotal: Int,
     val tanggal: String,
     val total: Int,
     val updated_at: String,
-    val user_id: Int
+    val user_id: Int,
 ) : Parcelable
