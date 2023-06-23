@@ -42,7 +42,7 @@ class SignInViewModel : ViewModel() {
                         }
                     } else {
                         stateLogin.value = State.ERROR
-                        errorMessage.value = response.errorBody()?.string()
+                        errorMessage.value = "Email dan Password salah, silahkan coba lagi"
                     }
                 }
 

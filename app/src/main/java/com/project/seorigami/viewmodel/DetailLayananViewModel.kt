@@ -34,8 +34,12 @@ class DetailLayananViewModel : ViewModel() {
                         stateLayanan.value = State.COMPLETE
                         dataLayanan.value = response.body()?.data
                     } else {
-                        stateLayanan.value = State.ERROR
-                        errorMessage.value = response.errorBody()?.string()
+                        if (response.code() == 401) {
+                            stateLayanan.value = State.FORCE_LOGOUT
+                        } else {
+                            stateLayanan.value = State.ERROR
+                            errorMessage.value = response.errorBody()?.string()
+                        }
                     }
                 }
 

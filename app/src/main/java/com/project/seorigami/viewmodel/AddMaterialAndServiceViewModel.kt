@@ -40,8 +40,12 @@ class AddMaterialAndServiceViewModel : ViewModel() {
                         stateKategori.value = State.COMPLETE
                         dataKategori.value = response.body()?.data
                     } else {
-                        stateKategori.value = State.ERROR
-                        errorMessage.value = response.errorBody()?.string()
+                        if (response.code() == 401) {
+                            stateKategori.value = State.FORCE_LOGOUT
+                        } else {
+                            stateKategori.value = State.ERROR
+                            errorMessage.value = response.errorBody()?.string()
+                        }
                     }
                 }
 
@@ -73,8 +77,12 @@ class AddMaterialAndServiceViewModel : ViewModel() {
                     if (response.isSuccessful) {
                         stateLayanan.value = State.COMPLETE
                     } else {
-                        stateLayanan.value = State.ERROR
-                        errorMessage.value = response.errorBody()?.string()
+                        if (response.code() == 401) {
+                            stateLayanan.value = State.FORCE_LOGOUT
+                        } else {
+                            stateLayanan.value = State.ERROR
+                            errorMessage.value = response.errorBody()?.string()
+                        }
                     }
                 }
 

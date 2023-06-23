@@ -56,7 +56,8 @@ class ProfileMitraFragment : Fragment() {
         binding?.textInputEditTextKabKota?.setText(dataUser.pelangganMitraData.kota)
         binding?.let {
             Glide.with(this)
-                .load(Utils.reformatImageUrl(dataUser.pelangganMitraData.foto))
+//                .load(Utils.reformatImageUrl(dataUser.pelangganMitraData.foto))
+                .load(dataUser.pelangganMitraData.foto)
                 .placeholder(R.drawable.ic_logo_seorigami)
                 .error(R.drawable.ic_logo_seorigami)
                 .into(it.imageViewFoto)
@@ -97,22 +98,6 @@ class ProfileMitraFragment : Fragment() {
             )
         }
 
-        viewModel.stateUpdateMitra.observe(requireActivity()) {
-            when (it) {
-                State.COMPLETE -> {
-                    dialog.dismiss()
-                }
-
-                State.LOADING -> {
-                    showProgressDialog()
-                }
-
-                else -> {
-                    dialog.dismiss()
-                }
-            }
-        }
-
         viewModel.stateUpdatePelanggan.observe(requireActivity()) {
             when (it) {
                 State.COMPLETE -> {
@@ -144,8 +129,18 @@ class ProfileMitraFragment : Fragment() {
                     showProgressDialog()
                 }
 
+                State.ERROR -> {
+                    dialog.dismiss()
+                }
+
                 else -> {
                     dialog.dismiss()
+                    Prefs(requireContext()).jwt = null
+                    Prefs(requireContext()).user = null
+                    val intent = Intent(context, SignInActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    Toast.makeText(requireActivity(), "Silahkan login kembali", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -193,8 +188,18 @@ class ProfileMitraFragment : Fragment() {
                     showProgressDialog()
                 }
 
+                State.ERROR -> {
+                    dialog.dismiss()
+                }
+
                 else -> {
                     dialog.dismiss()
+                    Prefs(requireContext()).jwt = null
+                    Prefs(requireContext()).user = null
+                    val intent = Intent(context, SignInActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    Toast.makeText(requireActivity(), "Silahkan login kembali", Toast.LENGTH_SHORT).show()
                 }
             }
         }

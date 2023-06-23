@@ -46,8 +46,12 @@ class CartViewModel : ViewModel() {
                         stateTransaction.value = State.COMPLETE
                         transactionData.value = response.body()?.data
                     } else {
-                        stateTransaction.value = State.ERROR
-                        errorMessage.value = response.errorBody()?.string()
+                        if (response.code() == 401) {
+                            stateTransaction.value = State.FORCE_LOGOUT
+                        } else {
+                            stateTransaction.value = State.ERROR
+                            errorMessage.value = response.errorBody()?.string()
+                        }
                     }
                 }
 

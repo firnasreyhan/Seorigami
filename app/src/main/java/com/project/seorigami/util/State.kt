@@ -4,4 +4,5 @@ enum class State {
     LOADING,
     ERROR,
     COMPLETE,
+    FORCE_LOGOUT,
 }

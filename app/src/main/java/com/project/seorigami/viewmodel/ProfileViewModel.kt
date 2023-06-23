@@ -42,8 +42,12 @@ class ProfileViewModel : ViewModel() {
                     if (response.isSuccessful) {
                         stateUpdatePelanggan.value = State.COMPLETE
                     } else {
-                        stateUpdatePelanggan.value = State.ERROR
-                        errorMessage.value = response.errorBody()?.string()
+                        if (response.code() == 401) {
+                            stateUpdatePelanggan.value = State.FORCE_LOGOUT
+                        } else {
+                            stateUpdatePelanggan.value = State.ERROR
+                            errorMessage.value = response.errorBody()?.string()
+                        }
                     }
                 }
 
@@ -78,8 +82,12 @@ class ProfileViewModel : ViewModel() {
                     if (response.isSuccessful) {
                         stateUpdateMitra.value = State.COMPLETE
                     } else {
-                        stateUpdateMitra.value = State.ERROR
-                        errorMessage.value = response.errorBody()?.string()
+                        if (response.code() == 401) {
+                            stateUpdateMitra.value = State.FORCE_LOGOUT
+                        } else {
+                            stateUpdateMitra.value = State.ERROR
+                            errorMessage.value = response.errorBody()?.string()
+                        }
                     }
                 }
 
@@ -107,8 +115,12 @@ class ProfileViewModel : ViewModel() {
                     if (response.isSuccessful) {
                         stateLogout.value = State.COMPLETE
                     } else {
-                        stateLogout.value = State.ERROR
-                        errorMessage.value = response.errorBody()?.string()
+                        if (response.code() == 401) {
+                            stateLogout.value = State.FORCE_LOGOUT
+                        } else {
+                            stateLogout.value = State.ERROR
+                            errorMessage.value = response.errorBody()?.string()
+                        }
                     }
                 }
 

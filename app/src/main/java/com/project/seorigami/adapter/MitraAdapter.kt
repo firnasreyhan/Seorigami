@@ -33,7 +33,8 @@ class MitraAdapter(private var listenerItem: ItemClickListener<MitraDataModel>, 
         holder.textViewKotaMitra.text = currentData.kota
 
         Glide.with(holder.itemView.context)
-            .load(Utils.reformatImageUrl(currentData.foto))
+//            .load(Utils.reformatImageUrl(currentData.foto))
+            .load(currentData.foto)
             .placeholder(R.drawable.ic_logo_seorigami)
             .error(R.drawable.ic_logo_seorigami)
             .into(holder.imageViewMitra)

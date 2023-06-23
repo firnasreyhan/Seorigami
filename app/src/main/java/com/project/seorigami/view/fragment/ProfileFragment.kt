@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.project.seorigami.databinding.FragmentProfileBinding
@@ -70,22 +71,6 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        viewModel.stateUpdatePelanggan.observe(requireActivity()) {
-            when (it) {
-                State.COMPLETE -> {
-                    dialog.dismiss()
-                }
-
-                State.LOADING -> {
-                    showProgressDialog()
-                }
-
-                else -> {
-                    dialog.dismiss()
-                }
-            }
-        }
-
         viewModel.stateLogout.observe(requireActivity()) {
             when (it) {
                 State.COMPLETE -> {
@@ -101,8 +86,18 @@ class ProfileFragment : Fragment() {
                     showProgressDialog()
                 }
 
+                State.ERROR -> {
+                    dialog.dismiss()
+                }
+
                 else -> {
                     dialog.dismiss()
+                    Prefs(requireContext()).jwt = null
+                    Prefs(requireContext()).user = null
+                    val intent = Intent(context, SignInActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    Toast.makeText(requireActivity(), "Silahkan login kembali", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -135,8 +130,18 @@ class ProfileFragment : Fragment() {
                     showProgressDialog()
                 }
 
+                State.ERROR -> {
+                    showProgressDialog()
+                }
+
                 else -> {
                     dialog.dismiss()
+                    Prefs(requireContext()).jwt = null
+                    Prefs(requireContext()).user = null
+                    val intent = Intent(context, SignInActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    Toast.makeText(requireActivity(), "Silahkan login kembali", Toast.LENGTH_SHORT).show()
                 }
             }
         }

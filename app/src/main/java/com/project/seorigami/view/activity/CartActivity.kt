@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ import com.project.seorigami.model.request.TransactionItemModel
 import com.project.seorigami.model.response.BahanJasaDataModel
 import com.project.seorigami.util.ItemClickListener
 import com.project.seorigami.util.KeyIntent
+import com.project.seorigami.util.Prefs
 import com.project.seorigami.util.State
 import com.project.seorigami.util.Utils
 import com.project.seorigami.viewmodel.CartViewModel
@@ -107,8 +109,18 @@ class CartActivity : AppCompatActivity() {
                     showProgressDialog()
                 }
 
+                State.ERROR -> {
+                    dialog.dismiss()
+                }
+
                 else -> {
                     dialog.dismiss()
+                    Prefs(this).jwt = null
+                    Prefs(this).user = null
+                    val intent = Intent(this, SignInActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    Toast.makeText(this, "Silahkan login kembali", Toast.LENGTH_SHORT).show()
                 }
             }
         }

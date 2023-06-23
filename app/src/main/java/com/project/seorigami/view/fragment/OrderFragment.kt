@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.seorigami.R
@@ -21,6 +22,7 @@ import com.project.seorigami.util.KeyIntent
 import com.project.seorigami.util.Prefs
 import com.project.seorigami.util.State
 import com.project.seorigami.view.activity.DetailLayananActivity
+import com.project.seorigami.view.activity.SignInActivity
 import com.project.seorigami.viewmodel.HomeViewModel
 import com.project.seorigami.viewmodel.OrderViewModel
 
@@ -114,8 +116,17 @@ class OrderFragment : Fragment() {
                     showProgressDialog()
                 }
 
-                else -> {
+                State.ERROR -> {
                     dialog.dismiss()
+                }
+
+                else -> {dialog.dismiss()
+                    Prefs(requireContext()).jwt = null
+                    Prefs(requireContext()).user = null
+                    val intent = Intent(context, SignInActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    Toast.makeText(requireActivity(), "Silahkan login kembali", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -130,8 +141,17 @@ class OrderFragment : Fragment() {
                     showProgressDialog()
                 }
 
-                else -> {
+                State.ERROR -> {
                     dialog.dismiss()
+                }
+
+                else -> {dialog.dismiss()
+                    Prefs(requireContext()).jwt = null
+                    Prefs(requireContext()).user = null
+                    val intent = Intent(context, SignInActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    Toast.makeText(requireActivity(), "Silahkan login kembali", Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -7,6 +7,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -19,6 +20,7 @@ import com.project.seorigami.model.response.BahanJasaDataModel
 import com.project.seorigami.model.response.MitraDataModel
 import com.project.seorigami.util.ItemClickListener
 import com.project.seorigami.util.KeyIntent
+import com.project.seorigami.util.Prefs
 import com.project.seorigami.util.State
 import com.project.seorigami.util.Utils
 import com.project.seorigami.viewmodel.DetailLayananViewModel
@@ -64,7 +66,8 @@ class DetailLayananActivity : AppCompatActivity() {
             pinpoint = it.pinpoint
 
             Glide.with(this)
-                .load(Utils.reformatImageUrl(it.foto))
+//                .load(Utils.reformatImageUrl(it.foto))
+                .load(it.foto)
                 .placeholder(R.drawable.ic_logo_seorigami)
                 .error(R.drawable.ic_logo_seorigami)
                 .into(binding.imageViewLayanan)
@@ -87,8 +90,18 @@ class DetailLayananActivity : AppCompatActivity() {
                     showProgressDialog()
                 }
 
+                State.ERROR -> {
+                    dialog.dismiss()
+                }
+
                 else -> {
                     dialog.dismiss()
+                    Prefs(this).jwt = null
+                    Prefs(this).user = null
+                    val intent = Intent(this, SignInActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    Toast.makeText(this, "Silahkan login kembali", Toast.LENGTH_SHORT).show()
                 }
             }
         }

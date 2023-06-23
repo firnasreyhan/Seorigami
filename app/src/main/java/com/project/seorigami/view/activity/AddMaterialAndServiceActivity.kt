@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.project.seorigami.R
 import com.project.seorigami.databinding.ActivityAddMaterialAndServiceBinding
+import com.project.seorigami.util.Prefs
 import com.project.seorigami.util.State
 import com.project.seorigami.viewmodel.AddMaterialAndServiceViewModel
 import com.project.seorigami.viewmodel.DetailLayananViewModel
@@ -95,8 +96,44 @@ class AddMaterialAndServiceActivity : AppCompatActivity() {
                     showProgressDialog()
                 }
 
+                State.ERROR -> {
+                    dialog.dismiss()
+                }
+
                 else -> {
                     dialog.dismiss()
+                    Prefs(this).jwt = null
+                    Prefs(this).user = null
+                    val intent = Intent(this, SignInActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    Toast.makeText(this, "Silahkan login kembali", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        viewModel.stateKategori.observe(this) {
+            when (it) {
+                State.COMPLETE -> {
+                    dialog.dismiss()
+                }
+
+                State.LOADING -> {
+                    showProgressDialog()
+                }
+
+                State.ERROR -> {
+                    dialog.dismiss()
+                }
+
+                else -> {
+                    dialog.dismiss()
+                    Prefs(this).jwt = null
+                    Prefs(this).user = null
+                    val intent = Intent(this, SignInActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    Toast.makeText(this, "Silahkan login kembali", Toast.LENGTH_SHORT).show()
                 }
             }
         }

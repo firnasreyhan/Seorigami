@@ -37,8 +37,12 @@ class OrderViewModel: ViewModel() {
                         stateOrder.value = State.COMPLETE
                         orderData.value = response.body()?.data
                     } else {
-                        stateOrder.value = State.ERROR
-                        errorMessage.value = response.errorBody()?.string()
+                        if (response.code() == 401) {
+                            stateOrder.value = State.FORCE_LOGOUT
+                        } else {
+                            stateOrder.value = State.ERROR
+                            errorMessage.value = response.errorBody()?.string()
+                        }
                     }
                 }
 
@@ -67,8 +71,12 @@ class OrderViewModel: ViewModel() {
                         stateConfirmOrder.value = State.COMPLETE
                         order(context)
                     } else {
-                        stateConfirmOrder.value = State.ERROR
-                        errorMessage.value = response.errorBody()?.string()
+                        if (response.code() == 401) {
+                            stateConfirmOrder.value = State.FORCE_LOGOUT
+                        } else {
+                            stateConfirmOrder.value = State.ERROR
+                            errorMessage.value = response.errorBody()?.string()
+                        }
                     }
                 }
 

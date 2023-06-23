@@ -24,8 +24,9 @@ class PaymentWebViewActivity : AppCompatActivity() {
         urlPayment = intent.getStringExtra(KeyIntent.URL_PAYMENT.name)
         transactionData = intent.getParcelableExtra(KeyIntent.TRANSACTION_DATA.name)!!
 
-
-
+        if (urlPayment != null) {
+            openUrlFromWebView()
+        }
     }
 
     private fun openUrlFromWebView() {

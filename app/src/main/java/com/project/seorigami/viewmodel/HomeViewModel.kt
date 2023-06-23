@@ -37,8 +37,12 @@ class HomeViewModel : ViewModel() {
                         stateKategori.value = State.COMPLETE
                         dataKategori.value = response.body()?.data
                     } else {
-                        stateKategori.value = State.ERROR
-                        errorMessage.value = response.errorBody()?.string()
+                        if (response.code() == 401) {
+                            stateKategori.value = State.FORCE_LOGOUT
+                        } else {
+                            stateKategori.value = State.ERROR
+                            errorMessage.value = response.errorBody()?.string()
+                        }
                     }
                 }
 
@@ -67,8 +71,12 @@ class HomeViewModel : ViewModel() {
                         stateMitra.value = State.COMPLETE
                         dataMitra.value = response.body()?.data
                     } else {
-                        stateMitra.value = State.ERROR
-                        errorMessage.value = response.errorBody()?.string()
+                        if (response.code() == 401) {
+                            stateMitra.value = State.FORCE_LOGOUT
+                        } else {
+                            stateMitra.value = State.ERROR
+                            errorMessage.value = response.errorBody()?.string()
+                        }
                     }
                 }
 
