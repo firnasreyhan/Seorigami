@@ -137,11 +137,15 @@ class DetailLayananActivity : AppCompatActivity() {
             val cartData = ArrayList<BahanJasaDataModel>()
             cartData.addAll(bahanAdapter.selectedData)
             cartData.addAll(jasaAdapter.selectedData)
-
-            val intent = Intent(this, CartActivity::class.java)
-            intent.putExtra(KeyIntent.CART_DATA.name, cartData)
-            intent.putExtra(KeyIntent.MITRA_ID.name, mitraId)
-            startActivity(intent)
+            
+            if (cartData.isNullOrEmpty()) {
+                Toast.makeText(this, "Mohon pilih layanan yang tersedia", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent(this, CartActivity::class.java)
+                intent.putExtra(KeyIntent.CART_DATA.name, cartData)
+                intent.putExtra(KeyIntent.MITRA_ID.name, mitraId)
+                startActivity(intent)
+            }
         }
     }
 
